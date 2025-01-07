@@ -1,0 +1,99 @@
+@import-normalize; /* bring in normalize.css styles */
+@import '../node_modules/modern-normalize/modern-normalize.css';
+
+:root {
+  --main-color: #092974;
+  --secondary-color: #ffffff;
+  --secondary-burnt-color: #fffffff0;
+  --main-transparent-color: #09297450;
+  --main-semi-transparent-color: #09297485;
+  --secondary-transparent-color: #ffffff1c;
+  --accent-color: #0089f7;
+  --accent-semi-transparent-color: #0088f780;
+  --accent-transparent-color: #0088f770;
+
+  --new-font-family: 'Fixel Display', sans-serif;
+  --secondary-font-family: 'Fixel Variable', sans-serif;
+  --my-ap-font-family: 'Ubuntu', sans-serif;
+  --streams-font-family: 'Montserrat', sans-serif;
+  --streams-secondary-font-family: 'Montserrat Alternates', sans-serif;
+  --animation-global: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  --chat-background-color: #ffffff;
+  --chat-font-color: #0f0f0f;
+  --pinned-message-color: var(--accent-color);
+  --pinned-message-minimized-color: var(--accent-semi-transparent-color);
+  --pin-icon-fill: var(--main-color);
+  --link-color: var(--main-color);
+}
+
+[data-theme='dark'] {
+  --chat-background-color: #0f0f0f;
+  --chat-font-color: #ffffff;
+  --pinned-message-color: var(--main-color);
+  --pinned-message-minimized-color: var(--main-semi-transparent-color);
+  --pin-icon-fill: var(--accent-color);
+  --link-color: var(--accent-color);
+}
+
+body {
+  margin: 0;
+  font-family: var(--new-font-family);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+img {
+  display: block;
+}
+
+svg {
+  flex-shrink: 0;
+}
+
+iframe {
+  border: none;
+}
+
+.swiper-wrapper {
+  transition-timing-function: linear;
+}
+
+.map-container {
+  height: 400px;
+  width: 100%;
+}
+
+.nav-open {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.nav-closed {
+  pointer-events: none;
+  opacity: 0;
+  transform: translateY(-100%);
+}
