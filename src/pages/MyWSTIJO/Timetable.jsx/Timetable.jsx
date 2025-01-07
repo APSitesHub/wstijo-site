@@ -26,9 +26,9 @@ export const Timetable = ({ user, timetable }) => {
   );
 
   const getLink = () => {
-    const baseStreamUrl = 'https://pedagogium.ap.education/lesson/';
+    const baseStreamUrl = 'https://wstijo.ap.education/lesson/';
 
-    return user.marathonId === '72421'
+    return user.marathonId === '78737'
       ? baseStreamUrl + 'logistics'
       : baseStreamUrl + 'prep';
   };

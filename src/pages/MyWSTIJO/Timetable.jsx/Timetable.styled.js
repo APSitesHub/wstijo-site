@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { TimetableBtnIcon } from '../MyPedagogiumPanel/MyPedagogiumPanel.styled';
+import { TimetableBtnIcon } from '../MyWSTIJOPanel/MyWSTIJOPanel.styled';
 
 export const TimetableBox = styled.div`
   position: absolute;

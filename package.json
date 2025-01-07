@@ -1,8 +1,8 @@
 {
-  "name": "pedagogium",
-  "version": "1.0.2.32",
+  "name": "wstijo",
+  "version": "1.0.1",
   "private": true,
-  "homepage": "https://apsiteshub.github.io/pedagogium-site/",
+  "homepage": "https://apsiteshub.github.io/wstijo-site/",
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",

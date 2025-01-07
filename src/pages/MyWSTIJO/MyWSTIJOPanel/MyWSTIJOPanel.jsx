@@ -8,14 +8,9 @@ import {
   PanelHideRightSwitch,
   PanelHideSwitch,
   TimetableBtnIcon,
-} from './MyPedagogiumPanel.styled';
+} from './MyWSTIJOPanel.styled';
 
-export const MyPedagogiumPanel = ({
-  user,
-  language,
-  timetable,
-  isMultipleCourses,
-}) => {
+export const MyWSTIJOPanel = ({ user, timetable }) => {
   const [isBackdropShown, setIsBackdropShown] = useState(false);
   const [isTimetableShown, setIsTimetableShown] = useState(false);
   const [isButtonBoxShown, setIsButtonBoxShown] = useState(true);

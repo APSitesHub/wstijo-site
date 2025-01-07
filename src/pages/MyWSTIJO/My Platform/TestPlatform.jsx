@@ -40,7 +40,7 @@ export const TestPlatform = ({ platformLink }) => {
         autoPlay
         muted
         src="https://www.ap.education/assets/video/Logo_Green.mp4"
-        title="Pedagogium"
+        title="WSTIJO"
       />
       <TestPlatformSpoiler>
         <TestLogo />

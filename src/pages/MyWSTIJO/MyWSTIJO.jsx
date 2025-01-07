@@ -16,10 +16,10 @@ import {
 import { useEffect, useState } from 'react';
 import * as yup from 'yup';
 import { MyPlatform } from './My Platform/MyPlatform';
-import { MyPedagogiumPanel } from './MyPedagogiumPanel/MyPedagogiumPanel';
-import { LoginErrorNote } from './MyPedagogiumPanel/MyPedagogiumPanel.styled';
+import { MyWSTIJOPanel } from './MyWSTIJOPanel/MyWSTIJOPanel';
+import { LoginErrorNote } from './MyWSTIJOPanel/MyWSTIJOPanel.styled';
 
-const MyPedagogium = () => {
+const MyWSTIJO = () => {
   const [isUserLogged, setIsUserLogged] = useState(false);
   const [timetable, setTimetable] = useState({});
   const [user, setUser] = useState({});
@@ -31,7 +31,7 @@ const MyPedagogium = () => {
   axios.defaults.baseURL = 'https://ap-server-8qi1.onrender.com';
 
   useEffect(() => {
-    document.title = 'My Pedagogium | Pedagogium';
+    document.title = 'My WSTIJO | WSTIJO';
 
     const refreshToken = async () => {
       console.log('token refresher');
@@ -65,15 +65,15 @@ const MyPedagogium = () => {
         ? `https://online.ap.education/Account/LoginByToken?token=${
             user.platformToken
           }&redirectUrl=${encodeURIComponent(
-            `https://online.ap.education/MarathonClass/?marathonId=72421&pupilId=${user.pupilId}&marathonLessonId=1160032`
+            `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=10266972`
           )}`
-        : `https://online.ap.education/MarathonClass/?marathonId=72421&pupilId=${user.pupilId}&marathonLessonId=1160032`;
+        : `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1057574`;
 
       setPlatformLink(link => (link = authLink));
     };
 
     setIframeLinks();
-  }, [user.pupilId, user.marathonNumber, user.platformToken]);
+  }, [user.pupilId, user.marathonId, user.platformToken]);
 
   const setAuthToken = token => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -153,7 +153,7 @@ const MyPedagogium = () => {
         </Formik>
       ) : (
         <>
-          <MyPedagogiumPanel
+          <MyWSTIJOPanel
             user={user}
             link={platformLink}
             timetable={timetable}
@@ -165,4 +165,4 @@ const MyPedagogium = () => {
   );
 };
 
-export default MyPedagogium;
+export default MyWSTIJO;
