@@ -65,9 +65,9 @@ const MyWSTIJO = () => {
         ? `https://online.ap.education/Account/LoginByToken?token=${
             user.platformToken
           }&redirectUrl=${encodeURIComponent(
-            `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1154863`
+            `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1190486`
           )}`
-        : `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1057574`;
+        : `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1190488`;
 
       setPlatformLink(link => (link = authLink));
     };
