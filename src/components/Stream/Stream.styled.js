@@ -3,7 +3,6 @@ import styled, { keyframes } from 'styled-components';
 import { ReactComponent as BoxSwitchLeft } from '../../img/svg/btnbox-switch-left.svg';
 import { ReactComponent as BoxSwitchRight } from '../../img/svg/btnbox-switch-right.svg';
 import { ReactComponent as KahootIcon } from '../../img/svg/kahootIcon.svg';
-import { ReactComponent as LogoClean } from '../../img/svg/logoNew.svg';
 import { ReactComponent as ChatIcon } from '../../img/svg/youTubeChat.svg';
 
 export const StreamSection = styled.section`
@@ -370,7 +369,8 @@ export const LoginFormText = styled.p`
   }
 `;
 
-export const LoginLogo = styled(LogoClean)`
+export const LoginLogo = styled.img`
+  display: block;
   width: 160px;
   height: auto;
 

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import eyesImg from '../../../img/quiz/eyes.png';
 import { CalendarIcon } from '../Attendance/Attendance.styled';
 import {
@@ -8,6 +9,8 @@ import {
 import {
   TimetableBody,
   TimetableBox,
+  TimetableChangeCourseBtn,
+  TimetableChangeCourseBtnText,
   TimetableDaysCell,
   TimetableDaysItem,
   TimetableHead,
@@ -21,14 +24,32 @@ import {
 } from './Timetable.styled';
 
 export const Timetable = ({ user, timetable }) => {
-  const personalTimetable = timetable.find(
-    timeline => user.marathonId === timeline.marathon
+  const [isAnimated, setIsAnimated] = useState(false);
+  const [marathonId, setMarathonId] = useState(user.marathonId);
+  const [personalTimetable, setPersonalTimetable] = useState(
+    timetable.find(timeline => marathonId === timeline.marathon)
   );
+
+  const changeTimetable = () => {
+    setIsAnimated(true);
+    setMarathonId(marathonId => (marathonId === '78737' ? '72468' : '78737'));
+    setPersonalTimetable(
+      personalTimetable =>
+        (personalTimetable = timetable.find(timeline =>
+          marathonId === '78737'
+            ? '72468' === timeline.marathon
+            : '78737' === timeline.marathon
+        ))
+    );
+    setTimeout(() => {
+      setIsAnimated(false)
+    }, 3000);
+  };
 
   const getLink = () => {
     const baseStreamUrl = 'https://wstijo.ap.education/lesson/';
 
-    return user.marathonId === '78737'
+    return marathonId === '78737'
       ? baseStreamUrl + 'logistics'
       : baseStreamUrl + 'prep';
   };
@@ -42,6 +63,11 @@ export const Timetable = ({ user, timetable }) => {
       <TimetableHeading>
         <CalendarIcon />
         Class schedule
+        <TimetableChangeCourseBtn onClick={changeTimetable}>
+          <TimetableChangeCourseBtnText>
+            Change course
+          </TimetableChangeCourseBtnText>
+        </TimetableChangeCourseBtn>
       </TimetableHeading>
       {!personalTimetable ? (
         <PointsPlaceHolder>
@@ -57,7 +83,11 @@ export const Timetable = ({ user, timetable }) => {
         <TimetableBody>
           <TimetableWebinars>
             <TimetableWebinarsHead>
-              <TimetableLessonType>Lesson online</TimetableLessonType>
+            <TimetableLessonType
+                className={isAnimated ? 'animated' : undefined}
+              >
+                {marathonId === '78737' ? 'Logistics' : 'Kurs Przygotowawczy'}
+              </TimetableLessonType>
               <TimetableLessonLink href={link} target="_blank">
                 <TimetableLessonLinkText>Go to lesson</TimetableLessonLinkText>
               </TimetableLessonLink>

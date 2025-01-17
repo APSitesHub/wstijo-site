@@ -14,6 +14,7 @@ import {
   LoginLogo,
   StreamAuthTextHello,
 } from '../../components/Stream/Stream.styled';
+import logo from '../../img/svg/logoNew.png';
 import {
   AdminFormBtn,
   AdminInput,
@@ -154,7 +155,7 @@ const Streams = () => {
             validationSchema={loginSchema}
           >
             <LoginForm>
-              <LoginLogo />
+              <LoginLogo src={logo} alt="WSTIJO logo" />
               <LoginFormText>
                 <StreamAuthTextHello>Hello!</StreamAuthTextHello>
                 Our website is not available without authorization. Please enter

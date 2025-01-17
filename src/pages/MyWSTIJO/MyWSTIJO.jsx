@@ -1,3 +1,4 @@
+import logo from '../../img/svg/logoNew.png'
 import axios from 'axios';
 import { FormBtnText, Label } from 'components/LeadForm/LeadForm.styled';
 import {
@@ -65,9 +66,9 @@ const MyWSTIJO = () => {
         ? `https://online.ap.education/Account/LoginByToken?token=${
             user.platformToken
           }&redirectUrl=${encodeURIComponent(
-            `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1190486`
+            'https://online.ap.education/cabinet/student/lessons'
           )}`
-        : `https://online.ap.education/MarathonClass/?marathonId=${user.marathonId}&pupilId=${user.pupilId}&marathonLessonId=1190488`;
+        : 'https://online.ap.education/cabinet/student/lessons';
 
       setPlatformLink(link => (link = authLink));
     };
@@ -117,7 +118,7 @@ const MyWSTIJO = () => {
           validationSchema={loginSchema}
         >
           <LoginForm>
-            <LoginLogo />
+            <LoginLogo src={logo} alt="WSTIJO logo"/>
             <LoginFormText>
               <StreamAuthTextHello>Hello!</StreamAuthTextHello>
               Our website is not available without authorization. Please enter

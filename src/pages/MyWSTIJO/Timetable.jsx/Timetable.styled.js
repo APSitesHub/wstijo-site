@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { TimetableBtnIcon } from '../MyWSTIJOPanel/MyWSTIJOPanel.styled';
 
 export const TimetableBox = styled.div`
@@ -106,9 +106,79 @@ export const TimetableSpeakings = styled.div`
   }
 `;
 
+export const pulse = keyframes`
+  0%{
+    transform: scale(0.9);
+  }
+  100%{
+    transform: scale(1.1);
+  }
+`;
+
 export const TimetableLessonType = styled.span`
   display: block;
+  font-size: 18px;
+  color: var(--main-color);
+
+  filter: drop-shadow(1px -1px 1px var(--main-color));
+
+  &.animated {
+    animation: ${pulse} 500ms 5 ease-in-out alternate;
+  }
 `;
+
+export const TimetableChangeCourseBtn = styled.button`
+  display: block;
+  padding: 5px 0;
+  height: 36px;
+  margin-left: auto;
+  margin-right: 6px;
+
+  position: relative;
+
+  text-align: center;
+  text-decoration: none;
+  width: 110px;
+  color: #fff;
+  font-weight: 500;
+  border: 1px transparent;
+  background: linear-gradient(
+      322deg,
+      var(--main-color) 23.22%,
+      var(--secondary-color) 110.01%
+    ),
+    var(--secondary-color);
+
+  border-radius: 5px;
+  overflow: hidden;
+
+  transition: all var(--animation-global);
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+
+    transition: opacity var(--animation-global);
+
+    background: linear-gradient(
+        322deg,
+        var(--secondary-color) -30.22%,
+        var(--main-color) 100%
+      ),
+      var(--secondary-color);
+  }
+
+  &:hover,
+  &:focus {
+    &::before {
+      opacity: 1;
+    }
+  }`;
 
 export const TimetableLessonLink = styled.a`
   display: block;
@@ -168,6 +238,10 @@ export const TimetableLessonLinkText = styled.span`
   z-index: 1;
 
   transform: translate(-50%, -50%);
+`;
+
+export const TimetableChangeCourseBtnText = styled(TimetableLessonLinkText)`
+  font-size: 14px;
 `;
 
 export const TimetableTable = styled.table`

@@ -28,16 +28,16 @@ export const App = () => {
           top: '10%',
         }}
       />
-      <Suspense fallback={Loader}>
-        <Routes>
+      <Suspense fallback={Loader} noindex={true}>
+        <Routes noindex={true}>
           <Route path="/" element={<MyWSTIJO />} noindex={true}>
             <Route path="*" element={<NotFound />} noindex={true} />
           </Route>
           <Route path="lesson" element={<Streams />} noindex={true}>
             <Route path="logistics" element={<Stream />} noindex={true} />
-            <Route path="logistics-chat" element={<WindowedChat />} />
+            <Route path="logistics-chat" element={<WindowedChat />} noindex={true}/>
             <Route path="prep" element={<Stream />} noindex={true} />
-            <Route path="prep-chat" element={<WindowedChat />} />
+            <Route path="prep-chat" element={<WindowedChat />} noindex={true}/>
           </Route>
         </Routes>
       </Suspense>
