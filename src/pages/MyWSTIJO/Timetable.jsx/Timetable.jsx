@@ -25,7 +25,7 @@ import {
 
 export const Timetable = ({ user, timetable }) => {
   const [isAnimated, setIsAnimated] = useState(false);
-  const [marathonId, setMarathonId] = useState(user.marathonId);
+  const [marathonId, setMarathonId] = useState('78737');
   const [personalTimetable, setPersonalTimetable] = useState(
     timetable.find(timeline => marathonId === timeline.marathon)
   );
@@ -42,7 +42,7 @@ export const Timetable = ({ user, timetable }) => {
         ))
     );
     setTimeout(() => {
-      setIsAnimated(false)
+      setIsAnimated(false);
     }, 3000);
   };
 
@@ -83,7 +83,7 @@ export const Timetable = ({ user, timetable }) => {
         <TimetableBody>
           <TimetableWebinars>
             <TimetableWebinarsHead>
-            <TimetableLessonType
+              <TimetableLessonType
                 className={isAnimated ? 'animated' : undefined}
               >
                 {marathonId === '78737' ? 'Logistics' : 'Kurs Przygotowawczy'}
