@@ -49,13 +49,6 @@ const Streams = () => {
 
   const detectUser = async () => {
     try {
-      let ip;
-      try {
-        ip = (await axios.get('https://jsonip.com/')).data.ip;
-        console.log(ip);
-      } catch (error) {
-        console.log(error);
-      }
       const id = localStorage.getItem('userID');
       const user = await axios.get(
         `https://ap-chat-server.onrender.com/users/${id}`
@@ -66,7 +59,7 @@ const Streams = () => {
           (currentUser = user.data || {
             username: 'User Is Not Logged In',
             isBanned: false,
-            userIP: ip || 'user has disabled ip tracker',
+            userIP: '',
           })
       );
     } catch (error) {
@@ -123,10 +116,9 @@ const Streams = () => {
     const refreshToken = async () => {
       console.log('token refresher');
       try {
-        const res = await axios.post(
-          '/uniusers/refresh/lesson',
-          { mail: localStorage.getItem('mail') }
-        );
+        const res = await axios.post('/uniusers/refresh/lesson', {
+          mail: localStorage.getItem('mail'),
+        });
         setIsUserLogged(isLogged => (isLogged = true));
         const id = nanoid(8);
         if (!localStorage.getItem('userID')) {
