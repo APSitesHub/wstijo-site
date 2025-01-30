@@ -20,7 +20,7 @@ export const ChatWindowedFooter = ({ socket, room }) => {
         text: message,
         username: localStorage.getItem('userName'),
         userID: localStorage.getItem('userID'),
-        userIP: '',
+        userIP: 'no ip',
         id: `${socket.id}${Math.random()}`,
         socketID: socket.id,
         roomLocation: room,
