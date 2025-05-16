@@ -9,8 +9,6 @@ import {
 import {
   TimetableBody,
   TimetableBox,
-  TimetableChangeCourseBtn,
-  TimetableChangeCourseBtnText,
   TimetableDaysCell,
   TimetableDaysItem,
   TimetableHead,
@@ -24,34 +22,35 @@ import {
 } from './Timetable.styled';
 
 export const Timetable = ({ user, timetable }) => {
+  //eslint-disable-next-line
   const [isAnimated, setIsAnimated] = useState(false);
+  //eslint-disable-next-line
   const [marathonId, setMarathonId] = useState('78737');
+  //eslint-disable-next-line
   const [personalTimetable, setPersonalTimetable] = useState(
     timetable.find(timeline => marathonId === timeline.marathon)
   );
 
-  const changeTimetable = () => {
-    setIsAnimated(true);
-    setMarathonId(marathonId => (marathonId === '78737' ? '72468' : '78737'));
-    setPersonalTimetable(
-      personalTimetable =>
-        (personalTimetable = timetable.find(timeline =>
-          marathonId === '78737'
-            ? '72468' === timeline.marathon
-            : '78737' === timeline.marathon
-        ))
-    );
-    setTimeout(() => {
-      setIsAnimated(false);
-    }, 3000);
-  };
+  // const changeTimetable = () => {
+  //   setIsAnimated(true);
+  //   setMarathonId(marathonId => (marathonId === '78737' ? '72468' : '78737'));
+  //   setPersonalTimetable(
+  //     personalTimetable =>
+  //       (personalTimetable = timetable.find(timeline =>
+  //         marathonId === '78737'
+  //           ? '72468' === timeline.marathon
+  //           : '78737' === timeline.marathon
+  //       ))
+  //   );
+  //   setTimeout(() => {
+  //     setIsAnimated(false);
+  //   }, 3000);
+  // };
 
   const getLink = () => {
     const baseStreamUrl = 'https://wstijo.ap.education/lesson/';
 
-    return marathonId === '78737'
-      ? baseStreamUrl + 'logistics'
-      : baseStreamUrl + 'prep';
+    return marathonId === '78737' && baseStreamUrl + 'logistics';
   };
 
   const link = getLink();
@@ -63,11 +62,11 @@ export const Timetable = ({ user, timetable }) => {
       <TimetableHeading>
         <CalendarIcon />
         Class schedule
-        <TimetableChangeCourseBtn onClick={changeTimetable}>
+        {/* <TimetableChangeCourseBtn onClick={changeTimetable}>
           <TimetableChangeCourseBtnText>
             Change course
           </TimetableChangeCourseBtnText>
-        </TimetableChangeCourseBtn>
+        </TimetableChangeCourseBtn> */}
       </TimetableHeading>
       {!personalTimetable ? (
         <PointsPlaceHolder>

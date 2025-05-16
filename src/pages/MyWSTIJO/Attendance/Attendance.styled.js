@@ -91,7 +91,7 @@ export const MonthSwitchBox = styled.div`
   background: linear-gradient(
       322deg,
       var(--main-color) 23.22%,
-      var(--secondary-color) 110.11%
+      var(--accent-color) 110.11%
     ),
     #fff;
 `;

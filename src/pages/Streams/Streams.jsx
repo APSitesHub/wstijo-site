@@ -51,7 +51,7 @@ const Streams = () => {
     try {
       const id = localStorage.getItem('userID');
       const user = await axios.get(
-        `https://ap-chat-server.onrender.com/users/${id}`
+        `https://ap-chat-server.onrender.com/uniusers/${id}`
       );
       console.log(user.data, 'detect');
       setCurrentUser(
@@ -119,6 +119,7 @@ const Streams = () => {
         const res = await axios.post('/uniusers/refresh/lesson', {
           mail: localStorage.getItem('mail'),
         });
+        setCurrentUser(currentUser => (currentUser = res.data.user));
         setIsUserLogged(isLogged => (isLogged = true));
         const id = nanoid(8);
         if (!localStorage.getItem('userID')) {

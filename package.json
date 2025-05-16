@@ -1,8 +1,8 @@
 {
   "name": "wstijo",
-  "version": "1.0.4.7",
+  "version": "1.0.4.8",
   "private": true,
-  "homepage": "https://apsiteshub.github.io/wstijo-site/",
+  "homepage": "https://wstijo.ap.education/",
   "dependencies": {
     "@emoji-mart/data": "^1.1.2",
     "@emoji-mart/react": "^1.1.1",

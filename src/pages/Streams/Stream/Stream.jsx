@@ -24,6 +24,9 @@ import {
   PlayerWrapper,
 } from './Stream.styled';
 import { ColorRing } from 'react-loader-spinner';
+import { StudentInput } from 'components/StudentInput/StudentInput';
+import { StudentOptions } from 'components/StudentInput/StudentOptions';
+import { StudentTrueFalse } from 'components/StudentInput/StudentTrueFalse';
 
 const roomID = 'e9f591ef-4d7f-4970-9c66-4843d362801a';
 const supportedLanguages = ['uk', 'en', 'pl', 'de'];
@@ -39,6 +42,9 @@ const Stream = () => {
   const [isIframeOpen, setIsIframeOpen] = useState(true);
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [isButtonBoxOpen, setIsButtonBoxOpen] = useState(true);
+  const [isQuizInputOpen, setIsQuizInputOpen] = useState(false);
+  const [isQuizOptionsOpen, setIsQuizOptionsOpen] = useState(false);
+  const [isQuizTrueFalseOpen, setIsQuizTrueFalseOpen] = useState(false);
   const [links, isLoading, currentUser] = useOutletContext();
   const chatEl = useRef();
   // eslint-disable-next-line
@@ -46,6 +52,9 @@ const Stream = () => {
   const [width, height] = useSize(document.body);
   const [messages, setMessages] = useState([]);
   const location = useLocation().pathname;
+  const questionID = useRef('');
+
+  console.log(57, currentUser, 'currentUser');
 
   const toggleChat = () => {
     setIsChatOpen(isChatOpen => !isChatOpen);
@@ -53,6 +62,16 @@ const Stream = () => {
 
   const toggleButtonBox = () => {
     setIsButtonBoxOpen(isOpen => !isOpen);
+  };
+
+  const toggleQuizInput = () => {
+    setIsQuizInputOpen(isQuizInputOpen => !isQuizInputOpen);
+  };
+  const toggleQuizOptions = () => {
+    setIsQuizOptionsOpen(isQuizOptionsOpen => !isQuizOptionsOpen);
+  };
+  const toggleQuizTrueFalse = () => {
+    setIsQuizTrueFalseOpen(isQuizTrueFalseOpen => !isQuizTrueFalseOpen);
   };
 
   const videoBoxWidth =
@@ -154,6 +173,37 @@ const Stream = () => {
         messages =>
           (messages = [...messages.filter(message => message.id !== id)])
       );
+    });
+
+    // open quizzes on event
+    socketRef.current.on('question:input', data => {
+      if (data.page === room) {
+        setIsQuizInputOpen(true);
+        questionID.current = data.question;
+      }
+    });
+    socketRef.current.on('question:options', data => {
+      if (data.page === room) {
+        setIsQuizOptionsOpen(true);
+        questionID.current = data.question;
+      }
+    });
+    socketRef.current.on('question:trueFalse', data => {
+      if (data.page === room) {
+        setIsQuizTrueFalseOpen(true);
+        questionID.current = data.question;
+      }
+    });
+
+    // close quizzes on event
+    socketRef.current.on('question:closeInput', data => {
+      data.page === room && setIsQuizInputOpen(false);
+    });
+    socketRef.current.on('question:closeOptions', data => {
+      data.page === room && setIsQuizOptionsOpen(false);
+    });
+    socketRef.current.on('question:closeTrueFalse', data => {
+      data.page === room && setIsQuizTrueFalseOpen(false);
     });
 
     return () => {
@@ -512,6 +562,33 @@ const Stream = () => {
             <BoxHideSwitch id="no-transform" onClick={toggleButtonBox}>
               {isButtonBoxOpen ? <BoxHideLeftSwitch /> : <BoxHideRightSwitch />}
             </BoxHideSwitch>
+
+            <StudentInput
+              isInputOpen={isQuizInputOpen}
+              socket={socketRef.current}
+              toggleQuiz={toggleQuizInput}
+              page={room}
+              currentUser={currentUser}
+              questionID={questionID.current}
+            />
+
+            <StudentOptions
+              isInputOpen={isQuizOptionsOpen}
+              socket={socketRef.current}
+              toggleQuiz={toggleQuizOptions}
+              page={room}
+              currentUser={currentUser}
+              questionID={questionID.current}
+            />
+
+            <StudentTrueFalse
+              isInputOpen={isQuizTrueFalseOpen}
+              socket={socketRef.current}
+              toggleQuiz={toggleQuizTrueFalse}
+              page={room}
+              currentUser={currentUser}
+              questionID={questionID.current}
+            />
 
             {height > width && (
               <ChatBox ref={chatEl} className={isChatOpen ? 'shown' : 'hidden'}>

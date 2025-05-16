@@ -1,4 +1,4 @@
-import logo from '../../img/svg/logoNew.png'
+import logo from '../../img/svg/logoNew.png';
 import axios from 'axios';
 import { FormBtnText, Label } from 'components/LeadForm/LeadForm.styled';
 import {
@@ -35,13 +35,11 @@ const MyWSTIJO = () => {
     document.title = 'My WSTIJO | WSTIJO';
 
     const refreshToken = async () => {
-      console.log('token refresher');
       try {
         const res = await axios.post('/uniusers/refresh', {
           mail: localStorage.getItem('mail'),
         });
         setIsUserLogged(isLogged => (isLogged = true));
-        console.log(73, res.data.user.platformToken);
         setUser(user => (user = { ...res.data.user }));
       } catch (error) {
         console.log(error);
@@ -50,7 +48,6 @@ const MyWSTIJO = () => {
     refreshToken();
 
     const getTimetable = async () => {
-      console.log('timetable getter');
       try {
         const res = await axios.get('/unitimetable');
         console.log(res);
@@ -68,13 +65,15 @@ const MyWSTIJO = () => {
           }&redirectUrl=${encodeURIComponent(
             'https://online.ap.education/cabinet/student/lessons'
           )}`
-        : 'https://online.ap.education/cabinet/student/lessons';
+        : user.mail?.includes('teacher')
+        ? `https://online.ap.education/cabinet/school/marathons/folder/3547`
+        : `https://online.ap.education/cabinet/student/lessons`;
 
       setPlatformLink(link => (link = authLink));
     };
 
     setIframeLinks();
-  }, [user.pupilId, user.marathonId, user.platformToken]);
+  }, [user.mail, user.pupilId, user.marathonId, user.platformToken]);
 
   const setAuthToken = token => {
     axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
@@ -118,7 +117,7 @@ const MyWSTIJO = () => {
           validationSchema={loginSchema}
         >
           <LoginForm>
-            <LoginLogo src={logo} alt="WSTIJO logo"/>
+            <LoginLogo src={logo} alt="WSTIJO logo" />
             <LoginFormText>
               <StreamAuthTextHello>Hello!</StreamAuthTextHello>
               Our website is not available without authorization. Please enter
@@ -155,7 +154,14 @@ const MyWSTIJO = () => {
       ) : (
         <>
           <MyWSTIJOPanel
-            user={user}
+            user={{
+              ...user,
+              visited: [
+                ...new Set(
+                  user.visited.map(date => date.replace(' lesson', ''))
+                ),
+              ],
+            }}
             link={platformLink}
             timetable={timetable}
           />

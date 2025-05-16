@@ -145,9 +145,9 @@ export const TimetableChangeCourseBtn = styled.button`
   background: linear-gradient(
       322deg,
       var(--main-color) 23.22%,
-      var(--secondary-color) 110.01%
+      var(--accent-color) 110.01%
     ),
-    var(--secondary-color);
+    var(--accent-color);
 
   border-radius: 5px;
   overflow: hidden;
@@ -167,10 +167,10 @@ export const TimetableChangeCourseBtn = styled.button`
 
     background: linear-gradient(
         322deg,
-        var(--secondary-color) -30.22%,
+        var(--accent-color) -30.22%,
         var(--main-color) 100%
       ),
-      var(--secondary-color);
+      var(--accent-color);
   }
 
   &:hover,
@@ -178,7 +178,8 @@ export const TimetableChangeCourseBtn = styled.button`
     &::before {
       opacity: 1;
     }
-  }`;
+  }
+`;
 
 export const TimetableLessonLink = styled.a`
   display: block;
@@ -195,9 +196,9 @@ export const TimetableLessonLink = styled.a`
   background: linear-gradient(
       322deg,
       var(--main-color) 23.22%,
-      var(--secondary-color) 110.01%
+      var(--accent-color) 110.01%
     ),
-    var(--secondary-color);
+    var(--accent-color);
 
   border-radius: 5px;
   overflow: hidden;
@@ -217,10 +218,10 @@ export const TimetableLessonLink = styled.a`
 
     background: linear-gradient(
         322deg,
-        var(--main-color) 23.22%,
-        var(--secondary-color) 110.01%
+        var(--accent-color) 23.22%,
+        var(--main-color) 110.01%
       ),
-      var(--secondary-color);
+      var(--main-color);
   }
 
   &:hover,
