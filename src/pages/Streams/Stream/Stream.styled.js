@@ -5,6 +5,7 @@ export const PlayerWrapper = styled.div`
   height: 100vh;
   position: relative;
   overflow: hidden;
+  background-color: #1a1a1b;
 `;
 
 export const JitsiContainer = styled.div`
